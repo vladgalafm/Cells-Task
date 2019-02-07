@@ -23,8 +23,6 @@ body {
 }
 
 .cells__cell {
-  width: 10vh;
-  height: 10vh;
   background: #ccdfeb 50% 50% no-repeat;
   background-size: cover;
   cursor: pointer;
@@ -48,6 +46,68 @@ body {
 
 .cells__cell--mouseover {
   background-color: #fafafa;
+}
+
+@media screen and (orientation: landscape) {
+  .cells__cell--size-4 {
+    height: 20.31746vh;
+    width: 20.31746vh;
+  }
+  .cells__cell--size-5 {
+    height: 16.19048vh;
+    width: 16.19048vh;
+  }
+  .cells__cell--size-6 {
+    height: 13.43915vh;
+    width: 13.43915vh;
+  }
+  .cells__cell--size-7 {
+    height: 11.47392vh;
+    width: 11.47392vh;
+  }
+  .cells__cell--size-8 {
+    height: 10vh;
+    width: 10vh;
+  }
+  .cells__cell--size-9 {
+    height: 8.85362vh;
+    width: 8.85362vh;
+  }
+  .cells__cell--size-10 {
+    height: 7.93651vh;
+    width: 7.93651vh;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .cells__cell--size-4 {
+    height: 24.21875vw;
+    width: 24.21875vw;
+  }
+  .cells__cell--size-5 {
+    height: 19.25vw;
+    width: 19.25vw;
+  }
+  .cells__cell--size-6 {
+    height: 15.9375vw;
+    width: 15.9375vw;
+  }
+  .cells__cell--size-7 {
+    height: 13.57143vw;
+    width: 13.57143vw;
+  }
+  .cells__cell--size-8 {
+    height: 11.79688vw;
+    width: 11.79688vw;
+  }
+  .cells__cell--size-9 {
+    height: 10.41667vw;
+    width: 10.41667vw;
+  }
+  .cells__cell--size-10 {
+    height: 9.3125vw;
+    width: 9.3125vw;
+  }
 }
 
 .cells__control {

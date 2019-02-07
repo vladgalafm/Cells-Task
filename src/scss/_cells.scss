@@ -1,7 +1,15 @@
+@mixin cell-size-landscape($size) {
+  height: (10 * (522vh - 2 * ($size + 1))) / (63 * $size);
+  width: (10 * (522vh - 2 * ($size + 1))) / (63 * $size);
+}
+
+@mixin cell-size-portrait($size) {
+  height: (100 * (320vw - 2 * ($size + 1))) / (320 * $size);
+  width: (100 * (320vw - 2 * ($size + 1))) / (320 * $size);
+}
+
 .cells {
   display: flex;
-  //justify-content: center;
-  //align-items: center;
   height: 100vh;
 
   &__container {
@@ -9,8 +17,6 @@
   }
 
   &__cell {
-    width: 10vh;
-    height: 10vh;
     background: $cell-color 50% 50% no-repeat;
     background-size: cover;
     cursor: pointer;
@@ -33,6 +39,66 @@
 
     &--mouseover {
       background-color: $background-color;
+    }
+
+    @media screen and (orientation: landscape) {
+      &--size-4 {
+        @include cell-size-landscape(4);
+      }
+
+      &--size-5 {
+        @include cell-size-landscape(5);
+      }
+
+      &--size-6 {
+        @include cell-size-landscape(6);
+      }
+
+      &--size-7 {
+        @include cell-size-landscape(7);
+      }
+
+      &--size-8 {
+        @include cell-size-landscape(8);
+      }
+
+      &--size-9 {
+        @include cell-size-landscape(9);
+      }
+
+      &--size-10 {
+        @include cell-size-landscape(10);
+      }
+    }
+
+    @media screen and (orientation: portrait) {
+      &--size-4 {
+        @include cell-size-portrait(4);
+      }
+
+      &--size-5 {
+        @include cell-size-portrait(5);
+      }
+
+      &--size-6 {
+        @include cell-size-portrait(6);
+      }
+
+      &--size-7 {
+        @include cell-size-portrait(7);
+      }
+
+      &--size-8 {
+        @include cell-size-portrait(8);
+      }
+
+      &--size-9 {
+        @include cell-size-portrait(9);
+      }
+
+      &--size-10 {
+        @include cell-size-portrait(10);
+      }
     }
   }
 

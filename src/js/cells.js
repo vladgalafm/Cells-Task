@@ -11,11 +11,12 @@
 
   let imagesInput = () => {
     cellsCollection.forEach(function(cell) {
-      cell.classList.remove('cells__cell--1', 'cells__cell--2', 'cells__cell--3', 'cells__cell--4');
+      cell.classList.remove(`cells__cell--${cell.dataset.image}`);
       cell.removeAttribute('data-image');
 
       let num = randomNumberGenerator(1, 4);
       cell.classList.add(`cells__cell--${num}`);
+      cell.classList.add(`cells__cell--size-${size}`);
       cell.dataset.image = num;
     });
   };
