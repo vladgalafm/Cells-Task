@@ -90,26 +90,34 @@
     }
   });
 
-  cellsCollection.forEach(function(cell) {
-    cell.addEventListener('mouseover', function() {
-      cellsToRepaint.push(cell);
+  table.onmouseover = function(event) {
+    if (!event.target.hasAttribute('data-image')) {
+      return;
+    }
 
-      let x = cell.cellIndex,
-          y = cell.parentNode.rowIndex;
+    let cell = event.target;
 
-      cellsRepaint(x, y, cell);
+    cellsToRepaint.push(cell);
 
-      cellsToRepaint.forEach(function(item) {
-        item.classList.add('cells__cell--mouseover');
-      });
+    let x = cell.cellIndex,
+        y = cell.parentNode.rowIndex;
+
+    cellsRepaint(x, y, cell);
+
+    cellsToRepaint.forEach(function(item) {
+      item.classList.add('cells__cell--mouseover');
+    });
+  };
+
+  table.onmouseout = function(event) {
+    if (!event.target.hasAttribute('data-image')) {
+      return;
+    }
+
+    cellsToRepaint.forEach(function(item) {
+      item.classList.remove('cells__cell--mouseover');
     });
 
-    cell.addEventListener('mouseout', function() {
-      cellsToRepaint.forEach(function(item) {
-        item.classList.remove('cells__cell--mouseover');
-      });
-
-      cellsToRepaint.length = 0;
-    });
-  });
+    cellsToRepaint.length = 0;
+  };
 }());
