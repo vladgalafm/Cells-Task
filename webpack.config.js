@@ -1,12 +1,13 @@
 const path = require('path'); // The path module provides utilities for working with file and directory paths
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development', // mode can be 'development', 'production' or 'none'. 'production' mode enables compressing for output file
-  entry: './src/index.js', // An entry point indicates which module webpack should use to begin building
+  entry: './src/js/index.js', // An entry point indicates which module webpack should use to begin building
   output: { // The output property tells webpack where to emit the bundles it creates and how to name these files
-    filename: 'main.js', // output.filename tells webpack the name of our bundle
+    filename: 'js/main.js', // output.filename tells webpack the name of our bundle
     path: path.resolve(__dirname, 'dist/') // output.path tells webpack where we want our bundle to be emitted to
   },
   module: {
@@ -34,7 +35,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true
+              sourceMap: true,
+              // context: path.resolve(__dirname, 'dist/css/'),
             }
           }, {
             loader: 'postcss-loader',
@@ -59,11 +61,11 @@ module.exports = {
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
-          'file-loader',
           {
-            loader: 'image-webpack-loader',
+            loader: 'file-loader',
             options: {
-              disable: true,
+              outputPath: 'img',
+              name: '[name].[ext]',
             },
           },
         ],
@@ -72,9 +74,16 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
+      filename: "css/style.css",
+      chunkFilename: "[id].css",
+    }),
+    new CopyWebpackPlugin([
+      {
+        // test: /\.html$/,
+        from: './src/index.html',
+        to: path.resolve(__dirname, 'dist/'),
+      }
+    ])
   ],
   watch: true,
 };

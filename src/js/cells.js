@@ -7,30 +7,30 @@
   let cellsCollection = table.querySelectorAll('td'),
       size = fieldSizer.value;
 
-  let randomNumberGenerator = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+  const randomNumberGenerator = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-  let imagesInput = () => {
+  const imagesInput = () => {
     cellsCollection.forEach(function(cell) {
       cell.classList.remove(`cells__cell--${cell.dataset.image}`);
       cell.removeAttribute('data-image');
 
-      let num = randomNumberGenerator(1, 4);
+      const num = randomNumberGenerator(1, 4);
       cell.classList.add(`cells__cell--${num}`);
       cell.classList.add(`cells__cell--size-${size}`);
       cell.dataset.image = num;
     });
   };
 
-  let tableReflow = () => {
+  const tableReflow = () => {
     size = fieldSizer.value;
 
     table.innerHTML = '';
     for (let row = 0; row < size; row++) {
-      let newRow = document.createElement('tr');
+      const newRow = document.createElement('tr');
       table.appendChild(newRow);
 
       for (let cell = 0; cell < size; cell++) {
-        let newCell = document.createElement('td');
+        const newCell = document.createElement('td');
         newCell.className = 'cells__cell';
         newRow.appendChild(newCell);
       }
@@ -42,7 +42,7 @@
 
   function cellsRepaint(x, y, cell) {
     if ((x - 1) >= 0) {
-      let newCell = table.rows[y].cells[x - 1];
+      const newCell = table.rows[y].cells[x - 1];
 
       if (cell.dataset.image === newCell.dataset.image && cellsToRepaint.indexOf(newCell) === -1) {
         cellsToRepaint.push(newCell);
@@ -51,7 +51,7 @@
     }
 
     if ((y - 1) >= 0) {
-      let newCell = table.rows[y - 1].cells[x];
+      const newCell = table.rows[y - 1].cells[x];
 
       if (cell.dataset.image === newCell.dataset.image && cellsToRepaint.indexOf(newCell) === -1) {
         cellsToRepaint.push(newCell);
@@ -60,7 +60,7 @@
     }
 
     if ((x + 1) < size) {
-      let newCell = table.rows[y].cells[x + 1];
+      const newCell = table.rows[y].cells[x + 1];
 
       if (cell.dataset.image === newCell.dataset.image && cellsToRepaint.indexOf(newCell) === -1) {
         cellsToRepaint.push(newCell);
@@ -69,7 +69,7 @@
     }
 
     if ((y + 1) < size) {
-      let newCell = table.rows[y + 1].cells[x];
+      const newCell = table.rows[y + 1].cells[x];
 
       if (cell.dataset.image === newCell.dataset.image && cellsToRepaint.indexOf(newCell) === -1) {
         cellsToRepaint.push(newCell);
@@ -95,12 +95,12 @@
       return;
     }
 
-    let cell = event.target;
+    const cell = event.target;
 
     cellsToRepaint.push(cell);
 
-    let x = cell.cellIndex,
-        y = cell.parentNode.rowIndex;
+    const x = cell.cellIndex,
+          y = cell.parentNode.rowIndex;
 
     cellsRepaint(x, y, cell);
 

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -119,18 +119,6 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_cells_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/cells.js */ \"./src/js/cells.js\");\n/* harmony import */ var _js_cells_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_cells_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scss/main.scss */ \"./src/scss/main.scss\");\n/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
-
-/***/ }),
-
 /***/ "./src/js/cells.js":
 /*!*************************!*\
   !*** ./src/js/cells.js ***!
@@ -139,6 +127,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_
 /***/ (function(module, exports) {
 
 eval(";\n\n(function () {\n  var table = document.querySelector('.js-cells-table'),\n      shuffleButton = document.querySelector('.js-shuffle'),\n      fieldSizer = document.getElementById('field-size'),\n      cellsToRepaint = [];\n  var cellsCollection = table.querySelectorAll('td'),\n      size = fieldSizer.value;\n\n  var randomNumberGenerator = function randomNumberGenerator(min, max) {\n    return Math.floor(Math.random() * (max - min + 1)) + min;\n  };\n\n  var imagesInput = function imagesInput() {\n    cellsCollection.forEach(function (cell) {\n      cell.classList.remove(\"cells__cell--\".concat(cell.dataset.image));\n      cell.removeAttribute('data-image');\n      var num = randomNumberGenerator(1, 4);\n      cell.classList.add(\"cells__cell--\".concat(num));\n      cell.classList.add(\"cells__cell--size-\".concat(size));\n      cell.dataset.image = num;\n    });\n  };\n\n  var tableReflow = function tableReflow() {\n    size = fieldSizer.value;\n    table.innerHTML = '';\n\n    for (var row = 0; row < size; row++) {\n      var newRow = document.createElement('tr');\n      table.appendChild(newRow);\n\n      for (var cell = 0; cell < size; cell++) {\n        var newCell = document.createElement('td');\n        newCell.className = 'cells__cell';\n        newRow.appendChild(newCell);\n      }\n    }\n\n    cellsCollection = table.querySelectorAll('td');\n    imagesInput();\n  };\n\n  function cellsRepaint(x, y, cell) {\n    if (x - 1 >= 0) {\n      var newCell = table.rows[y].cells[x - 1];\n\n      if (cell.dataset.image === newCell.dataset.image && cellsToRepaint.indexOf(newCell) === -1) {\n        cellsToRepaint.push(newCell);\n        cellsRepaint(x - 1, y, newCell);\n      }\n    }\n\n    if (y - 1 >= 0) {\n      var _newCell = table.rows[y - 1].cells[x];\n\n      if (cell.dataset.image === _newCell.dataset.image && cellsToRepaint.indexOf(_newCell) === -1) {\n        cellsToRepaint.push(_newCell);\n        cellsRepaint(x, y - 1, _newCell);\n      }\n    }\n\n    if (x + 1 < size) {\n      var _newCell2 = table.rows[y].cells[x + 1];\n\n      if (cell.dataset.image === _newCell2.dataset.image && cellsToRepaint.indexOf(_newCell2) === -1) {\n        cellsToRepaint.push(_newCell2);\n        cellsRepaint(x + 1, y, _newCell2);\n      }\n    }\n\n    if (y + 1 < size) {\n      var _newCell3 = table.rows[y + 1].cells[x];\n\n      if (cell.dataset.image === _newCell3.dataset.image && cellsToRepaint.indexOf(_newCell3) === -1) {\n        cellsToRepaint.push(_newCell3);\n        cellsRepaint(x, y + 1, _newCell3);\n      }\n    }\n  }\n\n  imagesInput();\n  shuffleButton.addEventListener('click', function () {\n    imagesInput();\n  });\n  fieldSizer.addEventListener('keydown', function (e) {\n    if (e.keyCode === 13) {\n      tableReflow();\n    }\n  });\n\n  table.onmouseover = function (event) {\n    if (!event.target.hasAttribute('data-image')) {\n      return;\n    }\n\n    var cell = event.target;\n    cellsToRepaint.push(cell);\n    var x = cell.cellIndex,\n        y = cell.parentNode.rowIndex;\n    cellsRepaint(x, y, cell);\n    cellsToRepaint.forEach(function (item) {\n      item.classList.add('cells__cell--mouseover');\n    });\n  };\n\n  table.onmouseout = function (event) {\n    if (!event.target.hasAttribute('data-image')) {\n      return;\n    }\n\n    cellsToRepaint.forEach(function (item) {\n      item.classList.remove('cells__cell--mouseover');\n    });\n    cellsToRepaint.length = 0;\n  };\n})();\n\n//# sourceURL=webpack:///./src/js/cells.js?");
+
+/***/ }),
+
+/***/ "./src/js/index.js":
+/*!*************************!*\
+  !*** ./src/js/index.js ***!
+  \*************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _cells_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cells.js */ \"./src/js/cells.js\");\n/* harmony import */ var _cells_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_cells_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../scss/main.scss */ \"./src/scss/main.scss\");\n/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n//# sourceURL=webpack:///./src/js/index.js?");
 
 /***/ }),
 

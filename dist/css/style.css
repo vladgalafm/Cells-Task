@@ -31,19 +31,19 @@ body {
 }
 
 .cells__cell--1 {
-  background-image: url(bc29b63fad2d3dd0451fe5510e001586.png);
+  background-image: url(img/1.png);
 }
 
 .cells__cell--2 {
-  background-image: url(edd33a1bb896111132c9a1b8e2766742.png);
+  background-image: url(img/2.png);
 }
 
 .cells__cell--3 {
-  background-image: url(64183f65dff153daeb38411c53b04e1a.png);
+  background-image: url(img/3.png);
 }
 
 .cells__cell--4 {
-  background-image: url(61c729b3e09d7148d1c288c2f56a11e0.png);
+  background-image: url(img/4.png);
 }
 
 .cells__cell--mouseover {
