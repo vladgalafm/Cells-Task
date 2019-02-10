@@ -1,11 +1,11 @@
 @mixin cell-size-landscape($size) {
-  height: (10 * (522vh - 2 * ($size + 1))) / (63 * $size);
-  width: (10 * (522vh - 2 * ($size + 1))) / (63 * $size);
+  height: (10 * (522vh)) / (63 * $size);
+  width: (10 * (522vh)) / (63 * $size);
 }
 
 @mixin cell-size-portrait($size) {
-  height: (100 * (320vw - 2 * ($size + 1))) / (320 * $size);
-  width: (100 * (320vw - 2 * ($size + 1))) / (320 * $size);
+  height: (100 * (320vw)) / (320 * $size);
+  width: (100 * (320vw)) / (320 * $size);
 }
 
 .cells {

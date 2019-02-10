@@ -75,63 +75,63 @@ tr {
 
 @media screen and (orientation: landscape) {
   .cells__cell--size-4 {
-    height: 20.31746vh;
-    width: 20.31746vh;
+    height: 20.71429vh;
+    width: 20.71429vh;
   }
   .cells__cell--size-5 {
-    height: 16.19048vh;
-    width: 16.19048vh;
+    height: 16.57143vh;
+    width: 16.57143vh;
   }
   .cells__cell--size-6 {
-    height: 13.43915vh;
-    width: 13.43915vh;
+    height: 13.80952vh;
+    width: 13.80952vh;
   }
   .cells__cell--size-7 {
-    height: 11.47392vh;
-    width: 11.47392vh;
+    height: 11.83673vh;
+    width: 11.83673vh;
   }
   .cells__cell--size-8 {
-    height: 10vh;
-    width: 10vh;
+    height: 10.35714vh;
+    width: 10.35714vh;
   }
   .cells__cell--size-9 {
-    height: 8.85362vh;
-    width: 8.85362vh;
+    height: 9.20635vh;
+    width: 9.20635vh;
   }
   .cells__cell--size-10 {
-    height: 7.93651vh;
-    width: 7.93651vh;
+    height: 8.28571vh;
+    width: 8.28571vh;
   }
 }
 
 @media screen and (orientation: portrait) {
   .cells__cell--size-4 {
-    height: 24.21875vw;
-    width: 24.21875vw;
+    height: 25vw;
+    width: 25vw;
   }
   .cells__cell--size-5 {
-    height: 19.25vw;
-    width: 19.25vw;
+    height: 20vw;
+    width: 20vw;
   }
   .cells__cell--size-6 {
-    height: 15.9375vw;
-    width: 15.9375vw;
+    height: 16.66667vw;
+    width: 16.66667vw;
   }
   .cells__cell--size-7 {
-    height: 13.57143vw;
-    width: 13.57143vw;
+    height: 14.28571vw;
+    width: 14.28571vw;
   }
   .cells__cell--size-8 {
-    height: 11.79688vw;
-    width: 11.79688vw;
+    height: 12.5vw;
+    width: 12.5vw;
   }
   .cells__cell--size-9 {
-    height: 10.41667vw;
-    width: 10.41667vw;
+    height: 11.11111vw;
+    width: 11.11111vw;
   }
   .cells__cell--size-10 {
-    height: 9.3125vw;
-    width: 9.3125vw;
+    height: 10vw;
+    width: 10vw;
   }
 }
 
