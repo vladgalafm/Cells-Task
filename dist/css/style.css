@@ -11,17 +11,18 @@ body {
   background-color: #fafafa;
 }
 
+table, tbody {
+  display: block;
+}
+
 .cells {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   height: 100vh;
@@ -33,7 +34,6 @@ body {
 
 .cells__cell {
   background: #ccdfeb 50% 50% no-repeat;
-  -webkit-background-size: cover;
   background-size: cover;
   -webkit-box-shadow: inset 0 0 0 1px #fafafa;
   box-shadow: inset 0 0 0 1px #fafafa;
@@ -124,11 +124,9 @@ body {
 
 .cells__control {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   padding: 20px 2px;
@@ -157,7 +155,6 @@ body {
   font-size: 20px;
   color: #ffffff;
   background-color: #d9534f;
-  -webkit-border-radius: 10px;
   border-radius: 10px;
   cursor: pointer;
   -webkit-transition-duration: 0.2s;
