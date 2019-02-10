@@ -2,7 +2,12 @@ body {
   background-color: $background-color;
 }
 
-// for IE display
-table, tbody {
-  display: block;
+// flexible cells sizes
+table {
+  display: flex;
+  flex-direction: column;
+}
+
+tr {
+  display: flex;
 }

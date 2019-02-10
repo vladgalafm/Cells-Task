@@ -11,8 +11,20 @@ body {
   background-color: #fafafa;
 }
 
-table, tbody {
-  display: block;
+table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .cells {
@@ -33,6 +45,7 @@ table, tbody {
 }
 
 .cells__cell {
+  display: block;
   background: #ccdfeb 50% 50% no-repeat;
   background-size: cover;
   -webkit-box-shadow: inset 0 0 0 1px #fafafa;

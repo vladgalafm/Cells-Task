@@ -19,6 +19,7 @@
   }
 
   &__cell {
+    display: block;
     background: $cell-color 50% 50% no-repeat;
     background-size: cover;
     box-shadow: inset 0 0 0 1px $background-color;
