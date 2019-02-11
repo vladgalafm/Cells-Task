@@ -24,6 +24,10 @@
   const tableReflow = () => {
     size = fieldSizer.value;
 
+    if (size < 4 || size > 10) {
+      return;
+    }
+
     table.innerHTML = '';
     for (let row = 0; row < size; row++) {
       const newRow = document.createElement('tr');
