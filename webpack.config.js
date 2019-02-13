@@ -21,13 +21,13 @@ module.exports = {
           presets: ['@babel/env']
         }
       },
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader'
-        ]
-      },
+      // {
+      //   test: /\.css$/,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     'css-loader'
+      //   ]
+      // },
       {
         test: /\.scss$/,
         use: [
