@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path'); // The path module provides utilities for working with file and directory paths
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
@@ -84,7 +85,12 @@ module.exports = {
         from: './src/index.html',
         to: path.resolve(__dirname, 'dist/'),
       }
-    ])
+    ]),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    })
   ],
   // devServer: {
   //   contentBase: path.resolve(__dirname, 'src'),

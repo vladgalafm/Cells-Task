@@ -1,100 +1,95 @@
-;(function() {
-  const table = document.querySelector('.js-cells-table'),
-        shuffleButton = document.querySelector('.js-shuffle'),
-        fieldSizer = document.getElementById('field-size'),
-        cellsToRepaint = [];
+jQuery(document).ready(function($) {
+  const $table = $('.js-cells-table:first');
+  const $shuffleButton = $('.js-shuffle:first');
+  const $fieldSizer = $('#field-size');
+  const cellsToRepaint = [];
 
-  let cellsCollection = table.querySelectorAll('td'),
-      size = fieldSizer.value;
+  let $cellsCollection = $('.js-cells-table:first td');
+  let size = $fieldSizer.val();
 
-  const randomNumberGenerator = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+  const generateRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-  const imagesInput = () => {
-    cellsCollection.forEach(function(cell) {
-      cell.classList.remove(`cells__cell--${cell.dataset.image}`);
-      cell.removeAttribute('data-image');
+  const inputImages = () => {
+    $cellsCollection.each(function() {
+      const num = generateRandomNumber(1, 4);
 
-      const num = randomNumberGenerator(1, 4);
-      cell.classList.add(`cells__cell--${num}`);
-      cell.classList.add(`cells__cell--size-${size}`);
-      cell.dataset.image = num;
+      $(this)
+        .removeClass(`cells__cell--${$(this).attr('data-image')}`)
+        .addClass(`cells__cell--${num} cells__cell--size-${size}`)
+        .attr('data-image', num);
     });
   };
 
-  const tableReflow = () => {
-    size = fieldSizer.value;
+  const reflowTable = () => {
+    size = $fieldSizer.val();
 
     if (size < 4 || size > 10) {
       return;
     }
 
-    table.innerHTML = '';
+    $table.empty();
+
     for (let row = 0; row < size; row++) {
-      const newRow = document.createElement('tr');
-      table.appendChild(newRow);
+      const $newRow = $('<tr></tr>').appendTo($table);
 
       for (let cell = 0; cell < size; cell++) {
-        const newCell = document.createElement('td');
-        newCell.className = 'cells__cell';
-        newRow.appendChild(newCell);
+        $('<td class="cells__cell"></td>').appendTo($newRow);
       }
     }
 
-    cellsCollection = table.querySelectorAll('td');
-    imagesInput();
+    $cellsCollection = $('.js-cells-table:first td');
+    inputImages();
   };
 
-  function cellsRepaint(x, y, cell) {
+  const repaintCells = (x, y, cell) => {
     if ((x - 1) >= 0) {
-      const newCell = table.rows[y].cells[x - 1];
+      const newCell = $table[0].rows[y].cells[x - 1];
 
       if (cell.dataset.image === newCell.dataset.image && cellsToRepaint.indexOf(newCell) === -1) {
         cellsToRepaint.push(newCell);
-        cellsRepaint(x - 1, y, newCell);
+        repaintCells(x - 1, y, newCell);
       }
     }
 
     if ((y - 1) >= 0) {
-      const newCell = table.rows[y - 1].cells[x];
+      const newCell = $table[0].rows[y - 1].cells[x];
 
       if (cell.dataset.image === newCell.dataset.image && cellsToRepaint.indexOf(newCell) === -1) {
         cellsToRepaint.push(newCell);
-        cellsRepaint(x, y - 1, newCell);
+        repaintCells(x, y - 1, newCell);
       }
     }
 
     if ((x + 1) < size) {
-      const newCell = table.rows[y].cells[x + 1];
+      const newCell = $table[0].rows[y].cells[x + 1];
 
       if (cell.dataset.image === newCell.dataset.image && cellsToRepaint.indexOf(newCell) === -1) {
         cellsToRepaint.push(newCell);
-        cellsRepaint(x + 1, y, newCell);
+        repaintCells(x + 1, y, newCell);
       }
     }
 
     if ((y + 1) < size) {
-      const newCell = table.rows[y + 1].cells[x];
+      const newCell = $table[0].rows[y + 1].cells[x];
 
       if (cell.dataset.image === newCell.dataset.image && cellsToRepaint.indexOf(newCell) === -1) {
         cellsToRepaint.push(newCell);
-        cellsRepaint(x, y + 1, newCell);
+        repaintCells(x, y + 1, newCell);
       }
     }
-  }
+  };
 
-  imagesInput();
+  inputImages();
 
-  shuffleButton.addEventListener('click', function() {
-    imagesInput();
-  });
+  $shuffleButton.click(() => inputImages());
 
-  fieldSizer.addEventListener('keydown', function(e) {
+  $fieldSizer.keydown((e) => {
     if (e.keyCode === 13) {
-      tableReflow();
+      reflowTable();
     }
   });
 
-  table.onmouseover = function(event) {
+  $table.mouseover((event) => {
     if (!event.target.hasAttribute('data-image')) {
       return;
     }
@@ -106,22 +101,22 @@
     const x = cell.cellIndex,
           y = cell.parentNode.rowIndex;
 
-    cellsRepaint(x, y, cell);
+    repaintCells(x, y, cell);
 
-    cellsToRepaint.forEach(function(item) {
+    cellsToRepaint.forEach((item) => {
       item.classList.add('cells__cell--mouseover');
     });
-  };
+  });
 
-  table.onmouseout = function(event) {
+  $table.mouseout((event) => {
     if (!event.target.hasAttribute('data-image')) {
       return;
     }
 
-    cellsToRepaint.forEach(function(item) {
+    cellsToRepaint.forEach((item) => {
       item.classList.remove('cells__cell--mouseover');
     });
 
     cellsToRepaint.length = 0;
-  };
-}());
+  });
+});
